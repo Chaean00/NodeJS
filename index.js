@@ -3,18 +3,23 @@ const app = express();
 const port = 3000;
 
 app.get("/", (req, res) => {
-  //   send() 함수는 연결된 서버나 클라이언트로 데이터를 전송합니다.
-  res.send("Hello World");
+  res.send("Hello World!!");
 });
 
-app.get("/dog", (req, res) => {
-  //   send() 함수는 연결된 서버나 클라이언트로 데이터를 전송합니다.
-  res.send({ sound: "멍멍" });
-});
+app.get("/sound/:name", (req, res) => {
+  const { name } = req.params;
 
-app.get("/cat", (req, res) => {
-  //   send() 함수는 연결된 서버나 클라이언트로 데이터를 전송합니다.
-  res.send("고양이");
+  if (name == "dog") {
+    res.json({ sound: "멍멍" });
+  } else if (name == "cat") {
+    res.json({ sound: "야옹" });
+  } else if (name == "pig") {
+    res.json({ sound: "꿀꿀" });
+  } else if (name == "cat") {
+    res.json({ sound: "야옹" });
+  } else {
+    res.json({ sound: "알수없음" });
+  }
 });
 
 //

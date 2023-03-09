@@ -1,0 +1,43 @@
+Get 방식
+1. 파라미터를 이용하는 방법
+app.get("/user/:id", (req, res) => {
+  const q = req.params;
+  console.log(q.id);
+  //   send() 함수는 연결된 서버나 클라이언트로 데이터를 전송합니다.
+  res.send({ userid: q.id });
+});
+// :(콜론)을 붙여주면 변수로 받는것
+
+2. 쿼리를 이용하는 방법
+
+// http://localhost:3000/user/coding?q=coding&name=jo&age=20
+app.get("/user/:id", (req, res) => {
+  const q = req.query;
+  console.log(q.q);
+  console.log(q.name);
+  console.log(q.age);
+
+  res.json({ userid: q.name });
+});
+
+Post방식 ex) axios, fetch
+파라미터를 id로 받음
+body라는 곳에 값이 담겨야 함 - json형태
+
+백엔드의 핵심 내용
+파라미터를 받는것에 대한 이해가 중요
+app.get("/sound/:name", (req, res) => {
+  const { name } = req.params;
+
+  if (name == "dog") {
+    res.json({ sound: "멍멍" });
+  } else if (name == "cat") {
+    res.json({ sound: "야옹" });
+  } else if (name == "pig") {
+    res.json({ sound: "꿀꿀" });
+  } else if (name == "cat") {
+    res.json({ sound: "야옹" });
+  } else {
+    res.json({ sound: "알수없음" });
+  }
+});
